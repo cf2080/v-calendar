@@ -26,7 +26,7 @@
         @keydown="e => onSpaceOrEnter(e, toggleMode)"
         ref="titleButton"
       >
-        {{ title }}
+        {{ title }} mofo
       </span>
       <!--Move next button-->
       <span
