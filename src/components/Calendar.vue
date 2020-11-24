@@ -70,6 +70,37 @@ export default {
         refInFor: true,
       }),
     );
+
+    // Renderer for year calendar arrows
+    const getArrowButtonYear = isPrev => {
+      const click = () => this.move(isPrev ? -12 : 12);
+      const keydown = e => onSpaceOrEnter(e, click);
+      const isDisabled = isPrev ? !this.canMovePrev : !this.canMoveNext;
+      return h(
+        'div',
+        {
+          class: ['vc-arrow', { 'is-disabled': isDisabled }],
+          attrs: {
+            role: 'button',
+          },
+          on: {
+            click,
+            keydown,
+          },
+        },
+        [
+          (isPrev
+            ? this.safeScopedSlot('header-left-button', { click })
+            : this.safeScopedSlot('header-right-button', { click })) ||
+          h(SvgIcon, {
+            props: {
+              name: isPrev ? 'double-left-arrow' : 'double-right-arrow',
+            },
+          }),
+        ],
+      );
+    };
+
     // Renderer for calendar arrows
     const getArrowButton = isPrev => {
       const click = () => this.move(isPrev ? -this.step_ : this.step_);
@@ -221,7 +252,7 @@ export default {
                 {
                   class: [`vc-arrows-container title-${this.titlePosition_}`],
                 },
-                [getArrowButton(true), getArrowButton(false)],
+                [getArrowButtonYear(true), getArrowButton(true), getArrowButton(false), getArrowButtonYear(false)],
               ),
               this.$scopedSlots.footer && this.$scopedSlots.footer(),
             ],

@@ -229,6 +229,8 @@ export default {
   user-select: none;
   white-space: nowrap;
   padding: 0 8px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 27px;
   &:hover {
     opacity: 0.75;
