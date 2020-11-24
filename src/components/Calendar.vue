@@ -109,7 +109,7 @@ export default {
       return h(
         'div',
         {
-          class: ['vc-arrow', { 'is-disabled': isDisabled }],
+          class: ['vc-arrow2', { 'is-disabled': isDisabled }],
           attrs: {
             role: 'button',
           },
@@ -831,6 +831,36 @@ export default {
     cursor: not-allowed;
   }
 }
+
+  .vc-arrow2 {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: auto;
+    color: var(--gray-600);
+    border-width: 2px;
+    border-style: solid;
+    margin-right: auto;
+    border-radius: var(--rounded);
+    border-color: transparent;
+    &:hover{
+    background: var(--gray-200);
+   }
+
+    &:focus {
+      border-color: var(--gray-300);
+    }
+
+    &.is-disabled {
+      opacity: 0.25;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
 
 .vc-day-popover-container {
   color: var(--white);
